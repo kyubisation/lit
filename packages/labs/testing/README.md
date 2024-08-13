@@ -44,6 +44,10 @@ Signature
 
 - `options: object` - Options object containing the following properties
   - `workerInitModules: string` - Modules to be loaded before the fixture modules. This allows registering e.g. Node.js ESM hooks or general setup. Accepts absolute paths, paths relative to the working directory, or external package modules.
+  - `typeScript: boolean | { tsconfig: string }` - Whether to enable TypeScript
+    parsing when running SSR code inside the worker. Optionally allows
+    specifying a relative path to a `tsconfig` file. Defaults to searching the
+    file tree for the nearest `tsconfig.json` file from the imported file.
 
 ### Fixtures
 

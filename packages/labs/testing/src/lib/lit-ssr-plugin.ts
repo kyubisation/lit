@@ -12,6 +12,14 @@ import {litSsrPluginCommand} from './constants.js';
 import type {TemplateResult} from 'lit';
 import type {TestRunnerPlugin} from '@web/test-runner';
 
+export interface TypeScriptOptions {
+  /**
+   * Path to the tsconfig.json to be used in compilation.
+   * If not set, it defaults to searching the file tree for the nearest tsconfig.json file.
+   */
+  tsconfig?: string;
+}
+
 export interface LitSsrPluginOptions {
   /**
    * These modules will be imported from each newly created worker.
@@ -19,6 +27,10 @@ export interface LitSsrPluginOptions {
    * This allows registering hooks for Node.js or general setup.
    */
   workerInitModules?: string[];
+  /**
+   * Whether to transpile TypeScript files.
+   */
+  typeScript?: boolean | TypeScriptOptions;
 }
 
 export interface Payload {
@@ -62,11 +74,22 @@ export function litSsrPlugin(
         reject = rej;
       });
 
+      if (
+        options.typeScript &&
+        typeof options.typeScript === 'object' &&
+        options.typeScript.tsconfig
+      ) {
+        options.typeScript.tsconfig = resolveModule(
+          options.typeScript.tsconfig
+        );
+      }
+
       const worker = new Worker(new URL('./worker.js', import.meta.url), {
         workerData: {
           template,
           modules: resolvedModules,
           workerInitModules: resolvedWorkerInitModules,
+          typeScript: options.typeScript ?? false,
         },
       });
 
