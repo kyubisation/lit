@@ -16,6 +16,7 @@ import {
   CSSResultGroup,
   CSSResultOrNative,
 } from './css-tag.js';
+import {HTMLElement} from './dom.js';
 import type {
   ReactiveController,
   ReactiveControllerHost,
@@ -51,14 +52,8 @@ const {
   getPrototypeOf,
 } = Object;
 
-const NODE_MODE = false;
-
 // Lets a minifier replace globalThis references with a minified name
 const global = globalThis;
-
-if (NODE_MODE) {
-  global.customElements ??= customElements;
-}
 
 const DEV_MODE = true;
 

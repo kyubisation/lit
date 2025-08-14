@@ -134,6 +134,7 @@ packages/reactive-element/test/
 
 packages/reactive-element/css-tag.*
 packages/reactive-element/decorators.*
+packages/reactive-element/dom.*
 packages/reactive-element/legacy-decorators.*
 packages/reactive-element/polyfill-support.*
 packages/reactive-element/std-decorators.*

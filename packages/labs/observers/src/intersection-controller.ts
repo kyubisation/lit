@@ -3,8 +3,8 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-import {isServer} from 'lit-html/is-server.js';
-import {
+import {IntersectionObserver} from '@lit/reactive-element/dom.js';
+import type {
   ReactiveController,
   ReactiveControllerHost,
 } from '@lit/reactive-element/reactive-controller.js';
@@ -95,13 +95,9 @@ export class IntersectionController<T = unknown> implements ReactiveController {
     }
     this._skipInitial = skipInitial ?? this._skipInitial;
     this.callback = callback;
-    if (isServer) {
-      return;
-    }
-    // Check browser support.
-    if (!window.IntersectionObserver) {
+    if (!IntersectionObserver) {
       console.warn(
-        `IntersectionController error: browser does not support IntersectionObserver.`
+        `IntersectionController error: environment does not support IntersectionObserver.`
       );
       return;
     }
