@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 import {ElementInternalsShim} from './lib/element-internals.js';
-import {EventShim, CustomEventShim} from './lib/events.js';
+import {EventShim} from './lib/events.js';
 
 export {
   ariaMixinAttributes,
@@ -12,12 +12,6 @@ export {
   HYDRATE_INTERNALS_ATTR_PREFIX,
 } from './lib/element-internals.js';
 export {CustomEvent, Event} from './lib/events.js';
-
-// In an empty Node.js vm, we need to patch the global context.
-// TODO: Remove these globalThis assignments when we remove support
-// for vm modules (--experimental-vm-modules).
-globalThis.Event ??= EventShim;
-globalThis.CustomEvent ??= CustomEventShim;
 
 const constructionToken = Symbol();
 

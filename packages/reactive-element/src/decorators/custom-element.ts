@@ -11,6 +11,7 @@
  * not an arrow function.
  */
 
+import {customElements} from '../dom.js';
 import type {Constructor} from './base.js';
 
 /**

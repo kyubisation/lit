@@ -186,6 +186,19 @@
       "development": "./development/decorators/state.js",
       "default": "./decorators/state.js"
     },
+    "./dom.js": {
+      "types": "./development/dom.d.ts",
+      "browser": {
+        "development": "./development/dom.js",
+        "default": "./dom.js"
+      },
+      "node": {
+        "development": "./node/development/dom.js",
+        "default": "./node/dom.js"
+      },
+      "development": "./development/dom.js",
+      "default": "./dom.js"
+    },
     "./polyfill-support.js": {
       "types": "./development/polyfill-support.d.ts",
       "browser": {

@@ -10,6 +10,7 @@
  * an @ExportDecoratedItems annotation must be defined as a regular function,
  * not an arrow function.
  */
+import {document} from '../dom.js';
 import type {ReactiveElement} from '../reactive-element.js';
 import {desc, type Interface} from './base.js';
 
@@ -66,8 +67,8 @@ export function queryAll(selector: string): QueryAllDecorator {
     return desc(obj, name, {
       get(this: ReactiveElement) {
         const container =
-          this.renderRoot ?? (fragment ??= document.createDocumentFragment());
-        return container.querySelectorAll(selector);
+          this.renderRoot ?? (fragment ??= document.createDocumentFragment?.());
+        return container?.querySelectorAll(selector);
       },
     });
   }) as QueryAllDecorator;
